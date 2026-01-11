@@ -5,7 +5,7 @@
  * You can run this with: bunx tsx examples/usage.ts
  */
 
-import { API_CONFIG, getApiEndpoint } from '../src/config.ts';
+import { getApiEndpoint } from '../src/config.ts';
 
 // Example 1: Simple fetch
 async function simpleExample() {
@@ -13,7 +13,7 @@ async function simpleExample() {
   console.log('========================\n');
 
   try {
-    const response = await fetch(API_CONFIG.DEFAULT);
+    const response = await fetch(getApiEndpoint());
     const data = await response.json();
     console.log('Response:', JSON.stringify(data, null, 2));
   } catch (error) {
@@ -28,7 +28,7 @@ async function errorMethodExample() {
   console.log('======================================\n');
 
   try {
-    const response = await fetch(API_CONFIG.DEFAULT, {
+    const response = await fetch(getApiEndpoint(), {
       method: 'POST',
     });
     const data = await response.json();
@@ -46,7 +46,7 @@ async function errorPathExample() {
   console.log('====================================\n');
 
   try {
-    const response = await fetch(`${API_CONFIG.DEFAULT}/api/ip`);
+    const response = await fetch(`${getApiEndpoint()}/api/ip`);
     const data = await response.json();
     console.log('Status:', response.status);
     console.log('Response:', JSON.stringify(data, null, 2));
@@ -62,7 +62,7 @@ async function customHeadersExample() {
   console.log('=============================================\n');
 
   try {
-    const response = await fetch(API_CONFIG.DEFAULT, {
+    const response = await fetch(getApiEndpoint(), {
       headers: {
         'X-Forwarded-For': '203.0.113.42, 198.51.100.17',
       },
@@ -80,7 +80,7 @@ async function runExamples() {
   console.log('GetIP API Usage Examples');
   console.log('========================\n');
   console.log('Make sure the dev server is running: bunx wrangler dev\n');
-  console.log(`Using endpoint: ${API_CONFIG.DEFAULT}`);
+  console.log(`Using endpoint: ${getApiEndpoint()}`);
   console.log(`To use production: Replace API_CONFIG.DEFAULT with API_CONFIG.PROD or getApiEndpoint('prod')\n`);
   console.log('----------------------------------------\n\n');
 
