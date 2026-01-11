@@ -5,13 +5,15 @@
  * You can run this with: bunx tsx examples/usage.ts
  */
 
+import { API_CONFIG, getApiEndpoint } from '../src/config.ts';
+
 // Example 1: Simple fetch
 async function simpleExample() {
   console.log('Example 1: Simple fetch');
   console.log('========================\n');
 
   try {
-    const response = await fetch('http://localhost:8787');
+    const response = await fetch(API_CONFIG.LOCAL);
     const data = await response.json();
     console.log('Response:', JSON.stringify(data, null, 2));
   } catch (error) {
@@ -26,7 +28,7 @@ async function errorMethodExample() {
   console.log('======================================\n');
 
   try {
-    const response = await fetch('http://localhost:8787', {
+    const response = await fetch(API_CONFIG.LOCAL, {
       method: 'POST',
     });
     const data = await response.json();
@@ -44,7 +46,7 @@ async function errorPathExample() {
   console.log('====================================\n');
 
   try {
-    const response = await fetch('http://localhost:8787/api/ip');
+    const response = await fetch(`${API_CONFIG.LOCAL}/api/ip`);
     const data = await response.json();
     console.log('Status:', response.status);
     console.log('Response:', JSON.stringify(data, null, 2));
@@ -60,7 +62,7 @@ async function customHeadersExample() {
   console.log('=============================================\n');
 
   try {
-    const response = await fetch('http://localhost:8787', {
+    const response = await fetch(API_CONFIG.LOCAL, {
       headers: {
         'X-Forwarded-For': '203.0.113.42, 198.51.100.17',
       },
@@ -78,6 +80,8 @@ async function runExamples() {
   console.log('GetIP API Usage Examples');
   console.log('========================\n');
   console.log('Make sure the dev server is running: bunx wrangler dev\n');
+  console.log(`Using endpoint: ${API_CONFIG.LOCAL}`);
+  console.log(`To use production: Replace API_CONFIG.LOCAL with API_CONFIG.PROD or getApiEndpoint('prod')\n`);
   console.log('----------------------------------------\n\n');
 
   await simpleExample();
