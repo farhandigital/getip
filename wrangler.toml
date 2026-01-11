@@ -1,0 +1,7 @@
+name = "getip"
+main = "src/index.ts"
+compatibility_date = "2024-01-11"
+
+# Observability settings (optional)
+[observability]
+enabled = true
