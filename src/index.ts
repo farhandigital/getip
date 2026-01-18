@@ -30,9 +30,10 @@ export default {
       return createNotFoundResponse();
     }
 
-    // Extract the client IP and country
+    // Extract the client IP and location information
     const ip = getClientIp(request);
     const country = getCountry(request);
+    // city and region requires enabling `Add visitor location headers` in Cloudflare Managed Transforms
     const city = getCity(request);
     const region = getRegion(request);
     
