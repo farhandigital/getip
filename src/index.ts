@@ -10,6 +10,7 @@ interface Env {
  */
 interface IpResponse {
   ip: string | null;
+  country: string | null;
   timestamp: string;
 }
 
@@ -50,6 +51,15 @@ function getClientIp(request: Request): string | null {
   if (xForwardedFor) {
     const ips = xForwardedFor.split(',').map(ip => ip.trim());
     return ips[0] ?? null;
+  }
+
+  return null;
+}
+
+function getCountry(request: Request): string | null {
+  const country = request.headers.get('CF-IPCountry');
+  if (country) {
+    return country;
   }
 
   return null;
@@ -125,8 +135,9 @@ export default {
       return createJsonResponse(errorResponse, 404);
     }
 
-    // Extract the client IP
+    // Extract the client IP and country
     const ip = getClientIp(request);
+    const country = getCountry(request);
     
     // Apply rate limiting based on IP address
     // Limit: 60 requests per minute per IP per Cloudflare location
@@ -151,6 +162,7 @@ export default {
     // Return the client IP
     const response: IpResponse = {
       ip,
+      country,
       timestamp: new Date().toISOString(),
     };
 
