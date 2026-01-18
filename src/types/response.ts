@@ -1,8 +1,8 @@
 /**
- * Response structure for IP address API
+ * Location and network data from Cloudflare's request.cf object
+ * This is the single source of truth for location-related fields
  */
-export interface IpResponse {
-  ip: string | null;
+export interface LocationData {
   country: string | null;
   city: string | null;
   region: string | null;
@@ -14,6 +14,13 @@ export interface IpResponse {
   continent: string | null;
   asn: number | null;
   asOrganization: string | null;
+}
+
+/**
+ * Response structure for IP address API
+ */
+export interface IpResponse extends LocationData {
+  ip: string | null;
   timestamp: string;
 }
 

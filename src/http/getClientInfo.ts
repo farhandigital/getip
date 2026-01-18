@@ -1,3 +1,4 @@
+import { LocationData } from "../types/response";
 
 /**
  * Extracts the client IP address from the request
@@ -43,7 +44,7 @@ export function getClientIp(request: Request): string | null {
  * @param cf - The request.cf object from Cloudflare Workers
  * @returns An object containing all available location and network data
  */
-export function getLocationData(cf: Request['cf']) {
+export function getLocationData(cf: Request['cf']): LocationData {
   if (!cf) {
     return {
       country: null,
