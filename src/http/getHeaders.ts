@@ -33,31 +33,46 @@ export function getClientIp(request: Request): string | null {
   return null;
 }
 
-export function getCountry(request: Request): string | null {
-  const country = request.headers.get('CF-IPCountry');
-  if (country) {
-    return country;
+/**
+ * Extracts location and network information from request.cf object
+ * 
+ * The request.cf object is automatically populated by Cloudflare Workers
+ * and contains rich geolocation and network information about the request.
+ * This is more reliable and feature-rich than extracting from headers.
+ * 
+ * @param cf - The request.cf object from Cloudflare Workers
+ * @returns An object containing all available location and network data
+ */
+export function getLocationData(cf: Request['cf']) {
+  if (!cf) {
+    return {
+      country: null,
+      city: null,
+      region: null,
+      regionCode: null,
+      latitude: null,
+      longitude: null,
+      postalCode: null,
+      timezone: null,
+      continent: null,
+      asn: null,
+      asOrganization: null,
+    };
   }
 
-  return null;
-}
-
-export function getCity(request: Request): string | null {
-  const city = request.headers.get('CF-IPCity');
-  if (city) {
-    return city;
-  }
-
-  return null;
-}
-
-export function getRegion(request: Request): string | null {
-  const region = request.headers.get('CF-IPRegion');
-  if (region) {
-    return region;
-  }
-
-  return null;
+  return {
+    country: (cf.country as string | undefined) ?? null,
+    city: (cf.city as string | undefined) ?? null,
+    region: (cf.region as string | undefined) ?? null,
+    regionCode: (cf.regionCode as string | undefined) ?? null,
+    latitude: (cf.latitude as string | undefined) ?? null,
+    longitude: (cf.longitude as string | undefined) ?? null,
+    postalCode: (cf.postalCode as string | undefined) ?? null,
+    timezone: (cf.timezone as string | undefined) ?? null,
+    continent: (cf.continent as string | undefined) ?? null,
+    asn: (cf.asn as number | undefined) ?? null,
+    asOrganization: (cf.asOrganization as string | undefined) ?? null,
+  };
 }
 
 /**

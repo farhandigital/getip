@@ -66,20 +66,28 @@ export function createRateLimitResponse(retryAfterSeconds: number = 60): Respons
  * Creates a successful IP response with client information
  * 
  * @param ip - The client IP address
- * @param country - The client country code
+ * @param locationData - Location and network information from request.cf
  * @returns Response object with 200 status
  */
 export function createIpSuccessResponse(
   ip: string | null,
-  country: string | null,
-  city: string | null,
-  region: string | null
+  locationData: {
+    country: string | null;
+    city: string | null;
+    region: string | null;
+    regionCode: string | null;
+    latitude: string | null;
+    longitude: string | null;
+    postalCode: string | null;
+    timezone: string | null;
+    continent: string | null;
+    asn: number | null;
+    asOrganization: string | null;
+  }
 ): Response {
   const response: IpResponse = {
     ip,
-    country,
-    city,
-    region,
+    ...locationData,
     timestamp: new Date().toISOString(),
   };
 

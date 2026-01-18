@@ -1,4 +1,4 @@
-import { getClientIp, getCountry, getCity, getRegion, getAllHeaders } from "./http/getHeaders";
+import { getClientIp, getLocationData, getAllHeaders } from "./http/getHeaders";
 import { 
   handleOptions, 
   createRateLimitResponse, 
@@ -37,12 +37,9 @@ export default {
       return createNotFoundResponse();
     }
 
-    // Extract the client IP and location information
+    // Extract the client IP and location information from request.cf
     const ip = getClientIp(request);
-    const country = getCountry(request);
-    // city and region requires enabling `Add visitor location headers` in Cloudflare Managed Transforms
-    const city = getCity(request);
-    const region = getRegion(request);
+    const locationData = getLocationData(request.cf);
     
     // Apply rate limiting based on IP address
     // Limit: 60 requests per minute per IP per Cloudflare location
@@ -53,7 +50,7 @@ export default {
       }
     }
 
-    // Return the client IP
-    return createIpSuccessResponse(ip, country, city, region);
+    // Return the client IP and location data
+    return createIpSuccessResponse(ip, locationData);
   },
 } satisfies ExportedHandler<Env>;

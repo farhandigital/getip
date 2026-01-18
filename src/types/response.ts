@@ -6,6 +6,14 @@ export interface IpResponse {
   country: string | null;
   city: string | null;
   region: string | null;
+  regionCode: string | null;
+  latitude: string | null;
+  longitude: string | null;
+  postalCode: string | null;
+  timezone: string | null;
+  continent: string | null;
+  asn: number | null;
+  asOrganization: string | null;
   timestamp: string;
 }
 
