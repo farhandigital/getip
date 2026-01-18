@@ -1,4 +1,5 @@
-import { getClientIp, getLocationData, getAllHeaders } from "./http/getHeaders";
+import { getClientIp, getLocationData } from "./http/getClientInfo";
+import { getAllHeaders } from "./http/getHeaders";
 import { 
   handleOptions, 
   createRateLimitResponse, 
