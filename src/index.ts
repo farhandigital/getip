@@ -52,7 +52,7 @@ export default {
       return createSimpleResponse(ip);
     }
 
-    // Only respond to root path for IP lookup
+    // return 404 for any other path
     if (url.pathname !== '/') {
       return createNotFoundResponse();
     }
