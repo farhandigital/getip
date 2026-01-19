@@ -112,7 +112,7 @@ export function createMethodNotAllowedResponse(): Response {
  */
 export function createNotFoundResponse(): Response {
   const errorResponse: ErrorResponse = {
-    error: 'Not found. Available paths: / (IP lookup) and /debug (headers dump).',
+    error: 'Not found. Available paths: / (IP + location lookup), /simple (IP only), and /debug (full headers + CF metadata dump).',
     timestamp: new Date().toISOString(),
   };
 
