@@ -163,8 +163,6 @@ bun run dev
 
 This will start a local development server. Note that during local development, the IP address might be `127.0.0.1` or a local network IP.
 
-**Note**: Rate limiting is not enforced in local development mode. To test rate limiting, deploy to Cloudflare Workers.
-
 ### Deployment
 
 #### 🚀 One-Click Deployment
