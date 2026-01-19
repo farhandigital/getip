@@ -1,5 +1,9 @@
 # GetIP - IP Address & Location API
 
+
+[![Version](https://img.shields.io/badge/version-1.0.0-green)](https://github.com/InvictusNavarchus/udemy-transcript-downloader)
+[![License](https://img.shields.io/badge/license-MIT-blue)](https://mozilla.org/MPL/2.0/)
+
 [![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/InvictusNavarchus/getip)
 
 A simple, robust API that returns the IP address and location information for anyone who sends a GET request. Built with TypeScript and deployed on Cloudflare Workers.
