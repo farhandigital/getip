@@ -178,7 +178,7 @@ async function runTests() {
   console.log('\n🚀 GetIP API Rate Limit Testing\n');
   console.log(`Endpoint: ${API_ENDPOINT}`);
   console.log(`Rate limit: 60 requests per minute per IP\n`);
-  console.log('Make sure the dev server is running: bunx wrangler dev --port 8787\n');
+  console.log('Make sure the dev server is running:');
   console.log('='.repeat(50) + '\n');
 
   const args = process.argv.slice(2);

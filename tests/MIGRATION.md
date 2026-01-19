@@ -269,7 +269,7 @@ However, for **automated testing and CI/CD**, use the new test suite.
 
 1. ✅ Tests are ready to run
 2. ⚠️  Ensure `TEST_ENDPOINT_URL` is set in `.env`
-3. ⚠️  Run `bunx wrangler dev --port 8787` before testing
+3. ⚠️  Run `bun run dev` before testing
 4. ✅ Run `bun test` to verify everything works
 5. 🔄 Consider adding to CI/CD pipeline
 

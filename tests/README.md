@@ -19,7 +19,7 @@ Before running tests, ensure:
 
 2. **Dev Server Running**: The tests require a running instance of the API:
    ```bash
-   bunx wrangler dev --port 8787
+   bun run dev
    ```
 
 ## Running Tests

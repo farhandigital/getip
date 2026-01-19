@@ -41,7 +41,7 @@ bun run examples/ratelimit-test.ts burst
 Make sure the development server is running before executing these examples:
 
 ```bash
-bunx wrangler dev --port 8787
+bun run dev
 ```
 
 Or if testing against production:

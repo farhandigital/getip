@@ -163,7 +163,7 @@ See `tests/README.md` for detailed testing documentation.
 ### Local Development
 
 ```bash
-bunx wrangler dev
+bun run dev
 ```
 
 This will start a local development server. Note that during local development, the IP address might be `127.0.0.1` or a local network IP.
@@ -173,7 +173,7 @@ This will start a local development server. Note that during local development, 
 ### Deployment
 
 ```bash
-bunx wrangler deploy
+bun run deploy
 ```
 
 ## Project Structure
