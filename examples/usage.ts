@@ -15,25 +15,64 @@ if (!_API_ENDPOINT) {
 // prevents tsc from complaining about possible undefined
 const API_ENDPOINT = _API_ENDPOINT;
 
-// Example 1: Simple fetch
-async function simpleExample() {
-  console.log('Example 1: Simple fetch');
-  console.log('========================\n');
+// Example 1: Default endpoint - IP + Location data (JSON)
+async function defaultEndpointExample() {
+  console.log('Example 1: GET / - IP + Location Data');
+  console.log('======================================\n');
 
   try {
     const response = await fetch(API_ENDPOINT);
     const data = await response.json();
+    console.log('Status:', response.status);
     console.log('Response:', JSON.stringify(data, null, 2));
+    console.log('\nNote: Includes IP, location (city, region, country, timezone), and ASN information');
   } catch (error) {
     console.error('Error:', error);
   }
   console.log('\n');
 }
 
-// Example 2: Error handling - Wrong method
+// Example 2: Simple endpoint - IP only (Plain text)
+async function simpleEndpointExample() {
+  console.log('Example 2: GET /simple - IP Only (Plain Text)');
+  console.log('==============================================\n');
+
+  try {
+    const response = await fetch(`${API_ENDPOINT}/simple`);
+    const text = await response.text();
+    console.log('Status:', response.status);
+    console.log('Content-Type:', response.headers.get('content-type'));
+    console.log('Response:', text);
+    console.log('\nNote: Perfect for shell scripts and simple integrations');
+  } catch (error) {
+    console.error('Error:', error);
+  }
+  console.log('\n');
+}
+
+// Example 3: Debug endpoint - Full request data
+async function debugEndpointExample() {
+  console.log('Example 3: GET /debug - Full Request Data');
+  console.log('==========================================\n');
+
+  try {
+    const response = await fetch(`${API_ENDPOINT}/debug`);
+    const data = await response.json();
+    console.log('Status:', response.status);
+    console.log('Response (truncated for readability):');
+    console.log('Headers:', Object.keys(data.headers).slice(0, 5).join(', '), '...');
+    console.log('CF Metadata:', data.cf ? 'Present' : 'Not available');
+    console.log('\nNote: Full response contains all request headers and Cloudflare metadata');
+  } catch (error) {
+    console.error('Error:', error);
+  }
+  console.log('\n');
+}
+
+// Example 4: Error handling - Method not allowed
 async function errorMethodExample() {
-  console.log('Example 2: POST request (should fail)');
-  console.log('======================================\n');
+  console.log('Example 4: POST Request (405 Method Not Allowed)');
+  console.log('=================================================\n');
 
   try {
     const response = await fetch(API_ENDPOINT, {
@@ -48,56 +87,40 @@ async function errorMethodExample() {
   console.log('\n');
 }
 
-// Example 3: Error handling - Wrong path
+// Example 5: Error handling - Path not found
 async function errorPathExample() {
-  console.log('Example 3: Wrong path (should fail)');
-  console.log('====================================\n');
+  console.log('Example 5: Invalid Path (404 Not Found)');
+  console.log('========================================\n');
 
   try {
     const response = await fetch(`${API_ENDPOINT}/api/ip`);
     const data = await response.json();
     console.log('Status:', response.status);
     console.log('Response:', JSON.stringify(data, null, 2));
+    console.log('\nNote: Error message lists all available paths');
   } catch (error) {
     console.error('Error:', error);
   }
   console.log('\n');
 }
 
-// Example 4: Using custom headers
-async function customHeadersExample() {
-  console.log('Example 4: Custom headers (simulating proxy)');
-  console.log('=============================================\n');
 
-  try {
-    const response = await fetch(API_ENDPOINT, {
-      headers: {
-        'X-Forwarded-For': '203.0.113.42, 198.51.100.17',
-      },
-    });
-    const data = await response.json();
-    console.log('Response:', JSON.stringify(data, null, 2));
-  } catch (error) {
-    console.error('Error:', error);
-  }
-  console.log('\n');
-}
 
 // Run all examples
 async function runExamples() {
-  console.log('GetIP API Usage Examples');
-  console.log('========================\n');
-  console.log('Make sure the dev server is running: bunx wrangler dev\n');
-  console.log(`Using endpoint: ${API_ENDPOINT}`);
-  console.log(`To use production: Replace API_CONFIG.DEFAULT with API_CONFIG.PROD or getApiEndpoint('prod')\n`);
-  console.log('----------------------------------------\n\n');
+  console.log('╔════════════════════════════════════╗');
+  console.log('║   GetIP API - Usage Examples       ║');
+  console.log('╚════════════════════════════════════╝\n');
+  console.log(`Endpoint: ${API_ENDPOINT}\n`);
+  console.log('----------------------------------------\n');
 
-  await simpleExample();
+  await defaultEndpointExample();
+  await simpleEndpointExample();
+  await debugEndpointExample();
   await errorMethodExample();
   await errorPathExample();
-  await customHeadersExample();
 
-  console.log('All examples completed!');
+  console.log('✓ All examples completed!');
 }
 
 // Execute if run directly
