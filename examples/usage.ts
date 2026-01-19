@@ -5,8 +5,15 @@
  * You can run this with: bun run examples/usage.ts
  */
 
-import { API_CONFIG } from '../src/config.ts';
-const API_ENDPOINT = API_CONFIG.PROD;
+import 'dotenv/config'
+const _API_ENDPOINT = process.env.PROD_URL;
+
+if (!_API_ENDPOINT) {
+  throw new Error('PROD_URL is not defined');
+}
+
+// prevents tsc from complaining about possible undefined
+const API_ENDPOINT = _API_ENDPOINT;
 
 // Example 1: Simple fetch
 async function simpleExample() {
