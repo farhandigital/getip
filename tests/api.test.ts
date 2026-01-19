@@ -58,14 +58,21 @@ describe('GetIP API Endpoints', () => {
       expect(isValidIp).toBe(true);
     });
 
-    it('should return location data as strings', async () => {
+    it('should return location data as strings or null', async () => {
       const response = await fetch(API_ENDPOINT);
       const data = await response.json();
       
-      expect(typeof data.city).toBe('string');
-      expect(typeof data.region).toBe('string');
-      expect(typeof data.country).toBe('string');
-      expect(typeof data.timezone).toBe('string');
+      // These fields can be string or null (when Cloudflare lacks data)
+      expect(['string', 'object']).toContain(typeof data.city);
+      expect(['string', 'object']).toContain(typeof data.region);
+      expect(['string', 'object']).toContain(typeof data.country);
+      expect(['string', 'object']).toContain(typeof data.timezone);
+      
+      // If they're not null, they should be strings
+      if (data.city !== null) expect(typeof data.city).toBe('string');
+      if (data.region !== null) expect(typeof data.region).toBe('string');
+      if (data.country !== null) expect(typeof data.country).toBe('string');
+      if (data.timezone !== null) expect(typeof data.timezone).toBe('string');
     });
 
     it('should return ASN data in correct format', async () => {
