@@ -140,22 +140,6 @@ bunx tsc --noEmit
 **Quick API Tests** (Recommended - ~10 seconds)
 ```bash
 bun test
-# or: bun test:api
-```
-
-**Full Test Suite** (Including rate limits - ~5+ minutes)
-```bash
-bun test:full
-```
-
-**Rate Limit Tests Only**
-```bash
-bun test:ratelimit
-```
-
-**Test Watch Mode**
-```bash
-bun test:watch
 ```
 
 See `tests/README.md` for detailed testing documentation.
