@@ -161,8 +161,6 @@ See `tests/README.md` for detailed testing documentation.
 bun run dev
 ```
 
-This will start a local development server. Note that during local development, the IP address might be `127.0.0.1` or a local network IP.
-
 ### Deployment
 
 #### 🚀 One-Click Deployment
@@ -201,14 +199,6 @@ getip/
 ├── wrangler.jsonc              # Cloudflare Workers configuration
 └── README.md                   # This file
 ```
-
-## Technical Details
-
-- **Runtime**: Cloudflare Workers (V8 isolates)
-- **Language**: TypeScript with strict type checking
-- **Package Manager**: Bun
-- **Deployment**: Cloudflare Workers
-- **No third-party libraries**: Uses only Web Standards APIs
 
 ## License
 
