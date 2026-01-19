@@ -132,6 +132,7 @@ The API implements rate limiting to prevent abuse:
 ### Prerequisites
 
 - [Bun](https://bun.sh) installed
+- [Node](https://nodejs.org/en/download) installed (for Wrangler)
 - Cloudflare account (for deployment)
 
 ### Installation
