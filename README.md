@@ -11,6 +11,7 @@ A simple, robust API that returns your IP address and location information. Buil
 
 ## Features
 
+- ✅ **Easy to Self-Host**: One-click deployment to Cloudflare Workers
 - ✅ **Simple & Robust**: No third-party dependencies
 - ✅ **Strongly Typed**: Written in TypeScript with strict type checking
 - ✅ **Fast**: Runs on Cloudflare's edge network
