@@ -6,10 +6,10 @@
  */
 
 import 'dotenv/config'
-const _API_ENDPOINT = process.env.PROD_URL;
+const _API_ENDPOINT = process.env.TEST_ENDPOINT_URL;
 
 if (!_API_ENDPOINT) {
-  throw new Error('PROD_URL is not defined');
+  throw new Error('TEST_ENDPOINT_URL is not defined');
 }
 
 // prevents tsc from complaining about possible undefined
