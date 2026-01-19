@@ -1,6 +1,9 @@
 # GetIP - IP Address & Location API
 
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/InvictusNavarchus/getip)
+
 A simple, robust API that returns the IP address and location information for anyone who sends a GET request. Built with TypeScript and deployed on Cloudflare Workers.
+
 
 ## Features
 
@@ -158,6 +161,14 @@ This will start a local development server. Note that during local development, 
 **Note**: Rate limiting is not enforced in local development mode. To test rate limiting, deploy to Cloudflare Workers.
 
 ### Deployment
+
+#### 🚀 One-Click Deployment
+
+If you want to self-host this project, you can deploy it to your Cloudflare account with a single click:
+
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/InvictusNavarchus/getip)
+
+#### Manual Deployment
 
 ```bash
 bun run deploy
