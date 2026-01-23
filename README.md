@@ -1,6 +1,6 @@
 # GetIP - IP Address & Location API
 
-![Version](https://img.shields.io/badge/version-1.0.0-green)
+![Version](https://img.shields.io/badge/version-1.0.1-green)
 [![License](https://img.shields.io/badge/license-MIT-blue)](https://github.com/farhandigital/getip/blob/master/LICENSE)
 
 [![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/farhandigital/getip)

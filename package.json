@@ -1,6 +1,6 @@
 {
 	"name": "getip",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Simple API to return client IP address on Cloudflare Workers",
 	"main": "src/index.ts",
 	"type": "module",
