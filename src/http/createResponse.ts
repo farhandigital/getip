@@ -4,6 +4,16 @@ import type {
 	ReliableLocationData,
 } from '../types/response';
 
+const RESPONSE_HEADERS: HeadersInit = {
+	'Content-Type': 'application/json;charset=UTF-8',
+	'Access-Control-Allow-Origin': '*',
+	'Access-Control-Allow-Methods': 'GET, OPTIONS',
+	'Access-Control-Allow-Headers': 'Content-Type',
+	'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+	Pragma: 'no-cache',
+	Expires: '0',
+};
+
 /**
  * Creates a JSON response with appropriate headers
  *
@@ -17,24 +27,13 @@ function createJsonResponse(
 ): Response {
 	return new Response(JSON.stringify(data, null, 2), {
 		status,
-		headers: {
-			'Content-Type': 'application/json;charset=UTF-8',
-			'Access-Control-Allow-Origin': '*',
-			'Access-Control-Allow-Methods': 'GET, OPTIONS',
-			'Access-Control-Allow-Headers': 'Content-Type',
-			'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
-			Pragma: 'no-cache',
-			Expires: '0',
-		},
+		headers: RESPONSE_HEADERS,
 	});
 }
 
 export function createSimpleResponse(ip: string | null): Response {
 	return new Response(ip, {
-		headers: {
-			'Content-Type': 'text/plain;charset=UTF-8',
-			'Access-Control-Allow-Origin': '*',
-		},
+		headers: RESPONSE_HEADERS,
 	});
 }
 
@@ -44,12 +43,7 @@ export function createSimpleResponse(ip: string | null): Response {
 export function handleOptions(): Response {
 	return new Response(null, {
 		status: 204,
-		headers: {
-			'Access-Control-Allow-Origin': '*',
-			'Access-Control-Allow-Methods': 'GET, OPTIONS',
-			'Access-Control-Allow-Headers': 'Content-Type',
-			'Access-Control-Max-Age': '86400',
-		},
+		headers: RESPONSE_HEADERS,
 	});
 }
 
@@ -70,9 +64,8 @@ export function createRateLimitResponse(
 	return new Response(JSON.stringify(errorResponse, null, 2), {
 		status: 429,
 		headers: {
-			'Content-Type': 'application/json;charset=UTF-8',
+			...RESPONSE_HEADERS,
 			'Retry-After': retryAfterSeconds.toString(),
-			'Access-Control-Allow-Origin': '*',
 		},
 	});
 }
@@ -111,14 +104,8 @@ export function createMethodNotAllowedResponse(): Response {
 	return new Response(JSON.stringify(errorResponse, null, 2), {
 		status: 405,
 		headers: {
-			'Content-Type': 'application/json;charset=UTF-8',
-			'Access-Control-Allow-Origin': '*',
-			'Access-Control-Allow-Methods': 'GET, OPTIONS',
-			'Access-Control-Allow-Headers': 'Content-Type',
+			...RESPONSE_HEADERS,
 			Allow: 'GET, OPTIONS',
-			'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
-			Pragma: 'no-cache',
-			Expires: '0',
 		},
 	});
 }
@@ -157,14 +144,6 @@ export function createDebugResponse(
 
 	return new Response(JSON.stringify(debugData, null, 2), {
 		status: 200,
-		headers: {
-			'Content-Type': 'application/json;charset=UTF-8',
-			'Access-Control-Allow-Origin': '*',
-			'Access-Control-Allow-Methods': 'GET, OPTIONS',
-			'Access-Control-Allow-Headers': 'Content-Type',
-			'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
-			Pragma: 'no-cache',
-			Expires: '0',
-		},
+		headers: RESPONSE_HEADERS,
 	});
 }
