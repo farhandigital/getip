@@ -14,6 +14,11 @@ const RESPONSE_HEADERS: HeadersInit = {
 	Expires: '0',
 };
 
+// add a newline for cleaner terminal output
+function addNewLine(content: string | null): string {
+	return `${content ?? ''}\n`;
+}
+
 /**
  * Creates a JSON response with appropriate headers
  *
@@ -25,14 +30,14 @@ function createJsonResponse(
 	data: IpResponse | ErrorResponse,
 	status: number = 200,
 ): Response {
-	return new Response(JSON.stringify(data, null, 2), {
+	return new Response(addNewLine(JSON.stringify(data, null, 2)), {
 		status,
 		headers: RESPONSE_HEADERS,
 	});
 }
 
 export function createSimpleResponse(ip: string | null): Response {
-	return new Response(ip, {
+	return new Response(addNewLine(ip), {
 		headers: RESPONSE_HEADERS,
 	});
 }
